@@ -8,8 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "js-yaml": "^4.1.0",
+    "mqtt": "^4.3.7",
+    "paho-mqtt": "^1.1.0",
+    "pina": "^0.20.2204228",
+    "pinia": "^2.1.4",
+    "url": "^0.11.1",
+    "vue": "^3.2.13",
+    "vue-mqtt": "^2.0.3",
+    "yaml-loader": "^0.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

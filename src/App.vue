@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" style="height: 100vh;">
+    <div style="height:80%; width:100%; background-color:white;">
+      <DishSpinner style="height:100%; width:100%;"/>
+    </div>
+    <MqttChatLog 
+     height_="18%" 
+     topic_="test/topic1"
+     @message-received="handleMessage"
+    />
+    <div style="height:2%; width:100%; background-color:white;"></div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+//import LowerMarginChatBoxVue from './components/LowerMarginChatBox.vue';
+import MqttChatLog from './components/MqttChatLog.vue';
+import DishSpinner from './components/DishSpinner.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    //LowerMarginChatBoxVue,
+    MqttChatLog,
+    DishSpinner,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
