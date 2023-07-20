@@ -1,5 +1,6 @@
 <template>
-  <div class="chatBox" :style="{height: height_, width: width_}">
+  <div class="chatBox" @click="toggleSize" :style="{height: chatBoxSize, width: '100%'}">
+    <div class="topicLabel">{{ topic_ }}</div>
     <div v-for="(message, index) in messages" :key="index" class="chatMessage">
       {{ message }}
     </div>
@@ -10,12 +11,16 @@
 .chatBox {
   border-style: solid;
   border-color: black;
-  overflow: auto;
   width: 100%;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 .chatMessage {
   margin-bottom: 20px;
+}
+.topicLabel {
+  font-weight: bold;
+  background-color: #eee;
 }
 </style>
 
@@ -25,14 +30,13 @@ import { useMqttBrokerStore } from '../store/mqttBrokerStore' // adjust path as 
 
 export default {
   props: {
-    height_:{type:String, default: '100%'},
-    width_:{type:String, default: '100%'},
     topic_:{type:String, required: true}
   },
   data() {
     return {
       messages: [],
-      maxMessages: 10
+      maxMessages: 10,
+      chatBoxSize: '3em'
     }
   },
   created() {
@@ -53,7 +57,7 @@ export default {
       }
 
       // Append the new message
-      const newMessage = this.topic_+": "+message.payloadString;
+      const newMessage = message.payloadString;
       this.messages.push(newMessage);
       
       // Emit the most recent message to the parent
@@ -65,6 +69,11 @@ export default {
       userName: brokerInfo.user,
       password: brokerInfo.pswd
     })
+  },
+  methods: {
+    toggleSize() {
+      this.chatBoxSize = this.chatBoxSize === '3em' ? '500px' : '3em';
+    }
   }
 }
 </script>
